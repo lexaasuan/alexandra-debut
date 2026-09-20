@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alexandra Krishel's 18th Debut | An Evening of Elegance &amp; Bloom</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <!-- Phosphor Icons CDN -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <!-- Google Fonts: Cinzel, Cormorant Garamond, Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            cinzel: ['"Cinzel"', 'serif'],
+            serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            sans: ['"Montserrat"', 'sans-serif'],
+          },
+          colors: {
+            wine: {
+              950: '#1b0206',
+              900: '#26040a',
+              850: '#350610',
+              800: '#460815',
+              700: '#5e0d1e',
+              600: '#7a1428',
+              500: '#9b1e36',
+              400: '#bf2c4b',
+            },
+            champagne: {
+              50: '#faf7f2',
+              100: '#f4ede1',
+              200: '#e8dcbe',
+              300: '#dcc69a',
+              400: '#cfb278',
+              gold: '#d4af37',
+              bright: '#f5d77f',
+              light: '#f9f6f0',
+              deep: '#a88424',
+            },
+            charcoal: '#181214',
+          },
+          boxShadow: {
+            'royal': '0 25px 60px -12px rgba(27, 2, 6, 0.75)',
+            'gold-glow': '0 0 25px rgba(212, 175, 55, 0.35)',
+            'gold-glow-lg': '0 0 40px rgba(245, 215, 127, 0.45)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .bg-damask-royal {
+      background-color: #1b0206;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(122, 20, 40, 0.55), transparent 70%),
+        radial-gradient(circle at 100% 100%, rgba(70, 8, 21, 0.75), transparent 60%),
+        radial-gradient(circle at 0% 100%, rgba(38, 4, 10, 0.9), transparent 65%),
+        radial-gradient(rgba(212, 175, 55, 0.08) 1.2px, transparent 1.2px);
+      background-size: 100% 100%, 100% 100%, 100% 100%, 28px 28px;
+      background-attachment: fixed;
+    }
+
+    .gold-foil-text {
+      background: linear-gradient(135deg, #fff9e6 0%, #f5d77f 30%, #d4af37 60%, #fff1c2 80%, #a88424 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .luxury-card {
+      background: linear-gradient(145deg, rgba(250, 247, 242, 0.98), rgba(244, 237, 225, 0.96));
+      backdrop-filter: blur(14px);
+    }
+
+    .glass-wine {
+      background: linear-gradient(135deg, rgba(45, 6, 13, 0.85), rgba(27, 2, 6, 0.92));
+      backdrop-filter: blur(12px);
+    }
+
+    #ambient-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    ::-webkit-scrollbar {
+      width: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #1b0206;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #a88424;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #d4af37;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-8px); }
+      40%, 80% { transform: translateX(8px); }
+    }
+    .animate-shake {
+      animation: shake 0.35s ease-in-out;
+    }
+  </style>
+</head>
+
+<body class="bg-damask-royal text-charcoal font-sans min-h-screen relative flex flex-col justify-between selection:bg-champagne-gold selection:text-wine-950 overflow-x-hidden">
+
+  <!-- Ambient Golden Dust Canvas -->
+  <canvas id="ambient-canvas"></canvas>
+
+  <header class="sticky top-0 z-40 bg-wine-950/95 backdrop-blur-md border-b border-champagne-gold/30 transition-all duration-300 shadow-royal">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
+      
+      <a href="javascript:void(0)" onclick="navigateTo('landing-view')" class="flex items-center gap-3.5 group">
+        <div class="w-11 h-11 rounded-full border border-champagne-gold/70 bg-gradient-to-br from-wine-800 to-wine-950 flex items-center justify-center shadow-gold-glow group-hover:border-champagne-bright transition">
+          <span class="font-cinzel text-sm font-bold text-champagne-gold tracking-wider group-hover:scale-105 transition transform">AK</span>
+        </div>
+        <div>
+          <span class="font-cinzel text-xs sm:text-sm tracking-[0.24em] uppercase text-champagne-100 block font-semibold">Alexandra Krishel</span>
+          <span class="text-[9px] sm:text-[10px] tracking-[0.28em] uppercase text-champagne-gold/90 block">18th Birthday Debut</span>
+        </div>
+      </a>
+
+      <div class="flex items-center gap-3">
+        <!-- Return to Search Button (visible only in RSVP interface) -->
+        <button 
+          id="nav-back-btn" 
+          onclick="navigateTo('landing-view')" 
+          class="hidden px-3.5 py-1.5 rounded-full border border-champagne-gold/50 text-champagne-200 hover:text-champagne-50 hover:bg-wine-900 text-xs font-semibold uppercase tracking-wider transition items-center gap-1.5"
+        >
+          <i class="ph ph-arrow-left text-xs"></i>
+          <span>Change Guest</span>
+        </button>
+
+        <!-- Organizer Passcode Access -->
+        <button 
+          onclick="requestOrganizerGate()" 
+          title="Debut Committee Organizer Access" 
+          class="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full border border-champagne-gold/40 bg-wine-900/80 hover:bg-wine-800 text-champagne-gold hover:text-champagne-bright text-xs font-medium uppercase tracking-wider transition shadow-sm"
+        >
+          <i class="ph-fill ph-lock-key text-sm"></i>
+          <span class="hidden sm:inline">Guest Tracker</span>
+          <span id="nav-badge-answered" class="bg-champagne-gold text-wine-950 font-bold px-1.5 py-0.5 rounded-full text-[10px] ml-0.5">0</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="relative z-10 flex-grow max-w-5xl mx-auto w-full px-4 sm:px-6 py-8 sm:py-12">
+
+    <!-- ========================================================================= -->
+    <!-- INTERFACE 1: LANDING & MASTER GUEST REGISTRY SEARCH                       -->
+    <!-- ========================================================================= -->
+    <section id="landing-view" class="transition-all duration-300">
+      
+      <!-- Monogram & Hero Headline -->
+      <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
+        <div class="inline-flex items-center justify-center w-14 h-14 rounded-full border border-champagne-gold/60 bg-wine-900/70 backdrop-blur-md shadow-gold-glow mb-4">
+          <i class="ph-thin ph-crown text-3xl text-champagne-gold"></i>
+        </div>
+        
+        <p class="text-[11px] sm:text-xs uppercase tracking-[0.4em] font-semibold text-champagne-bright mb-2">
+          An Evening of Elegance &amp; Bloom
+        </p>
+        <p class="font-cinzel text-xs sm:text-sm tracking-[0.25em] uppercase text-champagne-200 mb-2">
+          Cordially Inviting You to The 18th Debutante Gala of
+        </p>
+
+        <h1 class="text-4xl sm:text-6xl md:text-7xl font-serif text-champagne-50 tracking-tight leading-none my-3">
+          <span class="gold-foil-text font-serif italic">Alexandra Krishel</span>
+          <span class="block text-champagne-200 font-serif italic text-2xl sm:text-4xl mt-2 tracking-normal">A. Sinsuan</span>
+        </h1>
+
+        <!-- Date & Location Bar -->
+        <div class="mt-6 inline-flex flex-wrap justify-center items-center gap-3 sm:gap-6 text-xs sm:text-sm text-champagne-200 bg-wine-900/85 border border-champagne-gold/40 px-5 sm:px-7 py-3 rounded-full backdrop-blur-md shadow-royal">
+          <div class="flex items-center gap-2">
+            <i class="ph-fill ph-calendar-check text-champagne-bright text-base"></i>
+            <span class="font-medium tracking-wide">Sunday, November 8, 2026</span>
+          </div>
+          <span class="text-champagne-gold/60 hidden sm:inline">•</span>
+          <div class="flex items-center gap-2">
+            <i class="ph-fill ph-clock text-champagne-bright text-base"></i>
+            <span>5:30 PM Grand Entrance</span>
+          </div>
+          <span class="text-champagne-gold/60 hidden sm:inline">•</span>
+          <div class="flex items-center gap-2">
+            <i class="ph-fill ph-map-pin text-champagne-bright text-base"></i>
+            <span>Placida Pavillion &amp; Villa, Lugam Road, Malolos, Bulacan</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto mb-10">
+        <div class="text-center mb-3">
+          <span class="text-[10px] uppercase tracking-[0.3em] font-bold text-champagne-gold/90">The Ceremonial Traditions</span>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+          
+          <!-- 18 Roses -->
+          <div class="glass-wine border border-champagne-gold/30 rounded-2xl p-4 shadow-sm hover:border-champagne-gold transition">
+            <span class="text-2xl block mb-1">🌹</span>
+            <span class="block text-xs font-cinzel text-champagne-100 font-semibold tracking-wider">18 Roses</span>
+            <span class="text-[10px] text-champagne-300/80">The Cotillion Dance</span>
+          </div>
+
+          <!-- 9 Candles -->
+          <div class="glass-wine border border-champagne-gold/30 rounded-2xl p-4 shadow-sm hover:border-champagne-gold transition">
+            <span class="text-2xl block mb-1">🕯️</span>
+            <span class="block text-xs font-cinzel text-champagne-100 font-semibold tracking-wider">9 Candles</span>
+            <span class="text-[10px] text-champagne-300/80">Words of Wisdom</span>
+          </div>
+
+          <!-- 9 Toasts -->
+          <div class="glass-wine border border-champagne-gold/30 rounded-2xl p-4 shadow-sm hover:border-champagne-gold transition">
+            <span class="text-2xl block mb-1">🥂</span>
+            <span class="block text-xs font-cinzel text-champagne-100 font-semibold tracking-wider">9 Toasts</span>
+            <span class="text-[10px] text-champagne-300/80">Tributes &amp; Cheers</span>
+          </div>
+
+          <!-- 18 Treasures -->
+          <div class="glass-wine border border-champagne-gold/30 rounded-2xl p-4 shadow-sm hover:border-champagne-gold transition flex flex-col items-center">
+            <div class="h-8 flex items-center justify-center mb-1">
+              <svg class="w-6 h-6 text-champagne-bright" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M5 4h14a2 2 0 0 1 2 2v2H3V6a2 2 0 0 1 2-2zm-2 5h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9zm8 2a2 2 0 0 0-2 2v1h4v-1a2 2 0 0 0-2-2z"/>
+              </svg>
+            </div>
+            <span class="block text-xs font-cinzel text-champagne-100 font-semibold tracking-wider">18 Treasures</span>
+            <span class="text-[10px] text-champagne-300/80">Keepsakes &amp; Tokens</span>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="luxury-card rounded-3xl p-6 sm:p-10 border border-champagne-300 shadow-royal max-w-2xl mx-auto text-center relative overflow-hidden">
+        <div class="absolute -top-12 -right-12 w-36 h-36 bg-champagne-gold/20 rounded-full blur-2xl pointer-events-none"></div>
+
+        <p class="text-sm sm:text-base text-wine-950 font-serif italic leading-relaxed mb-6">
+          "As eighteen roses bloom and eighteen candles kindle our path with warmth, we invite you to share in this treasured milestone of womanhood, laughter, and lifelong friendship."
+        </p>
+
+        <div class="h-px w-24 bg-gradient-to-r from-transparent via-wine-800/40 to-transparent mx-auto mb-6"></div>
+
+        <p class="text-xs uppercase tracking-[0.25em] font-bold text-wine-900 mb-1.5">Locate Your RSVP Invitation</p>
+        <p class="text-xs text-charcoal/75 mb-6">Type your first name or surname to open your personalized table assignment and ceremony details.</p>
+
+        <!-- Search Input with clear button -->
+        <div class="relative text-left">
+          <div class="relative">
+            <input 
+              type="text" 
+              id="guest-search-input" 
+              oninput="handleGuestSearch(this.value)"
+              placeholder="e.g. Mild Delgado, Sheryl Sinsuan, Vaughn Sambile..." 
+              autocomplete="off"
+              class="w-full pl-12 pr-10 py-4 rounded-2xl bg-champagne-50 border border-champagne-300 focus:border-wine-800 focus:ring-2 focus:ring-wine-800/20 text-charcoal placeholder-charcoal/40 text-sm sm:text-base outline-none transition shadow-inner font-medium"
+            />
+            <i class="ph ph-magnifying-glass text-wine-700 text-xl absolute left-4 top-4"></i>
+            <button 
+              id="search-clear-btn" 
+              onclick="clearSearchInput()" 
+              class="hidden absolute right-4 top-4 text-charcoal/40 hover:text-charcoal transition"
+            >
+              <i class="ph ph-x-circle text-lg"></i>
+            </button>
+          </div>
+
+          <!-- Dynamic Search Results Dropdown -->
+          <div 
+            id="search-results-dropdown" 
+            class="hidden mt-2.5 w-full bg-champagne-50 border border-champagne-400 rounded-2xl shadow-2xl max-h-72 overflow-y-auto z-30 divide-y divide-champagne-200"
+          >
+            <!-- Injected via JavaScript -->
+          </div>
+        </div>
+
+        <p class="text-[11px] text-charcoal/60 mt-5 italic">
+          Kindly ensure proper spelling. If your invitation is not showing, please reach out to Alexandra or the debut committee.
+        </p>
+      </div>
+
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- INTERFACE 2: PERSONALIZED GUEST RSVP INTERFACE                            -->
+    <!-- ========================================================================= -->
+    <section id="rsvp-view" class="hidden transition-all duration-300">
+      <div class="luxury-card rounded-3xl p-6 sm:p-10 border border-champagne-300 shadow-royal max-w-2xl mx-auto relative">
+        
+        <!-- Back Navigation Button -->
+        <button 
+          onclick="navigateTo('landing-view')" 
+          class="inline-flex items-center gap-1.5 text-xs text-wine-800 hover:text-wine-600 font-semibold tracking-wider uppercase mb-4 transition"
+        >
+          <i class="ph-bold ph-arrow-left"></i> Change Guest Selection
+        </button>
+
+        <!-- Guest Identity Header Card -->
+        <div class="border-b border-champagne-300 pb-5 mb-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+          <div>
+            <span class="text-[10px] font-bold tracking-[0.25em] uppercase text-wine-700">Official Guest Registration</span>
+            <h2 id="guest-greeting-name" class="font-serif text-3xl sm:text-4xl text-wine-950 font-bold mt-1">Welcome Guest!</h2>
+            
+            <!-- Table Assignment Badge (Locked) -->
+            <div class="mt-2 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-wine-900 text-champagne-100 text-xs font-medium border border-champagne-gold/40 shadow-sm">
+              <i class="ph-fill ph-chair text-champagne-gold"></i>
+              <span>Assigned Seating: <strong id="guest-table-badge" class="text-champagne-bright">Table 1: VIP</strong></span>
+            </div>
+          </div>
+
+          <div class="w-14 h-14 rounded-full bg-wine-900 text-champagne-gold flex items-center justify-center text-2xl shrink-0 shadow-md border border-champagne-gold/50">
+            <i class="ph-fill ph-sparkle"></i>
+          </div>
+        </div>
+
+        <!-- Pre-assigned Tradition Honor Card (STRICTLY LOCKED) -->
+        <div id="tradition-honor-box" class="mb-6 p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-wine-950 via-wine-900 to-wine-950 border border-champagne-gold text-champagne-50 shadow-md">
+          <div class="flex items-start gap-3.5">
+            <div id="tradition-symbol-container" class="w-10 h-10 rounded-xl bg-wine-800/80 border border-champagne-gold/50 flex items-center justify-center shrink-0 text-xl text-champagne-bright">
+              <!-- Rendered via JS -->
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-[10px] uppercase tracking-[0.2em] font-bold text-champagne-bright">Designated Honor</span>
+                <span class="text-[9px] uppercase px-2 py-0.2 rounded-full bg-champagne-gold/20 text-champagne-200 border border-champagne-gold/30">Program Tradition</span>
+              </div>
+              <h3 id="tradition-role-title" class="font-cinzel text-lg sm:text-xl font-bold text-champagne-50 mt-0.5">Tradition Role</h3>
+              <p id="tradition-role-desc" class="text-xs text-champagne-200/90 leading-relaxed mt-1">Role explanation</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Active RSVP Form -->
+        <form id="active-guest-form" onsubmit="handleFormSubmission(event)" class="space-y-6">
+          
+          <!-- Attendance Confirmation Radios -->
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-wine-900 mb-2">
+              Will you attend Alexandra's 18th Debut? <span class="text-wine-600">*</span>
+            </label>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <label class="flex items-center gap-3 p-4 rounded-2xl border border-champagne-400 bg-champagne-50 cursor-pointer hover:border-wine-700 transition has-[:checked]:border-wine-800 has-[:checked]:bg-wine-50/80 has-[:checked]:ring-1 has-[:checked]:ring-wine-800">
+                <input type="radio" name="attendance-status" value="attending" checked onchange="toggleAttendanceFields(true)" class="accent-wine-700 w-4 h-4">
+                <div>
+                  <span class="block text-sm font-semibold text-wine-950">Graciously Accepts</span>
+                  <span class="text-xs text-charcoal/70">I will celebrate in Malolos!</span>
+                </div>
+              </label>
+
+              <label class="flex items-center gap-3 p-4 rounded-2xl border border-champagne-400 bg-champagne-50 cursor-pointer hover:border-wine-700 transition has-[:checked]:border-wine-800 has-[:checked]:bg-wine-50/80 has-[:checked]:ring-1 has-[:checked]:ring-wine-800">
+                <input type="radio" name="attendance-status" value="declining" onchange="toggleAttendanceFields(false)" class="accent-wine-700 w-4 h-4">
+                <div>
+                  <span class="block text-sm font-semibold text-wine-950">Regretfully Declines</span>
+                  <span class="text-xs text-charcoal/70">Sending my warmest love &amp; wishes</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Attending Details Section -->
+          <div id="attending-fields-container" class="space-y-6 pt-2">
+            
+            <!-- Companion & Plus One Selector -->
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-wine-900 mb-1.5" for="companion-count-select">
+                Seats Needed (Including yourself)
+              </label>
+              <select 
+                id="companion-count-select" 
+                onchange="renderCompanionNameInputs(this.value)" 
+                class="w-full px-4 py-3.5 rounded-2xl bg-champagne-50 border border-champagne-400 focus:outline-none focus:ring-2 focus:ring-wine-800 text-sm font-medium text-charcoal transition"
+              >
+                <option value="0">Just Me (1 seat reserved)</option>
+                <option value="1">1 Companion (2 seats total)</option>
+                <option value="2">2 Companions (3 seats total)</option>
+              </select>
+
+              <!-- Mandatory Advisory Note Box -->
+              <div class="mt-2.5 p-3 rounded-xl bg-champagne-200/70 border border-champagne-gold/60 text-xs text-wine-950 flex items-start gap-2.5">
+                <i class="ph-fill ph-warning text-wine-700 text-base shrink-0 mt-0.5"></i>
+                <p class="leading-relaxed font-medium">
+                  <strong>Notice:</strong> The amount of pluses must not exceed than what you need or what is neccesary.
+                </p>
+              </div>
+
+              <!-- Dynamic Companion Name Inputs Container -->
+              <div id="companion-inputs-container" class="mt-3 space-y-2.5 hidden">
+                <!-- Injected via Javascript -->
+              </div>
+            </div>
+
+            <!-- Contact Number -->
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-wine-900 mb-1.5" for="guest-contact">
+                Contact Number <span class="text-wine-600">*</span>
+              </label>
+              <input 
+                type="tel" 
+                id="guest-contact" 
+                placeholder="e.g. 0917 123 4567"
+                class="w-full px-4 py-3.5 rounded-2xl bg-champagne-50 border border-champagne-400 focus:outline-none focus:ring-2 focus:ring-wine-800 text-sm text-charcoal placeholder-charcoal/40"
+              />
+            </div>
+
+            <!-- Song Dedication -->
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-wine-900 mb-1.5" for="guest-song">
+                Song Dedication for Alexandra's Debut Playlist 🎵
+              </label>
+              <div class="relative">
+                <input 
+                  type="text" 
+                  id="guest-song" 
+                  placeholder="e.g., 'Enchanted' - Taylor Swift or 'Until I Found You'"
+                  class="w-full pl-11 pr-4 py-3.5 rounded-2xl bg-champagne-50 border border-champagne-400 focus:outline-none focus:ring-2 focus:ring-wine-800 text-sm text-charcoal placeholder-charcoal/40"
+                />
+                <i class="ph ph-music-notes text-wine-700 text-lg absolute left-4 top-3.5"></i>
+              </div>
+              <p class="text-[11px] text-charcoal/60 mt-1">What song would you like to include in Alexandra's debut playlist?</p>
+            </div>
+
+          </div>
+
+          <!-- Heartfelt Message & Blessings -->
+          <div class="pt-1">
+            <label class="block text-xs font-bold uppercase tracking-wider text-wine-900 mb-1.5" for="guest-message">
+              Heartfelt Message &amp; Blessings for Alexandra ✍️
+            </label>
+            <textarea 
+              id="guest-message" 
+              rows="3" 
+              placeholder="Write a message or blessing for Alexandra on her 18th birthday..."
+              class="w-full px-4 py-3 rounded-2xl bg-champagne-50 border border-champagne-400 focus:outline-none focus:ring-2 focus:ring-wine-800 text-sm text-charcoal placeholder-charcoal/40 resize-none"
+            ></textarea>
+          </div>
+
+          <!-- Submit Button -->
+          <button 
+            type="submit" 
+            class="w-full py-4 rounded-2xl bg-gradient-to-r from-wine-900 via-wine-800 to-wine-950 text-champagne-100 font-cinzel tracking-[0.2em] uppercase font-bold text-sm shadow-royal hover:brightness-110 active:scale-[0.99] transition duration-200 flex items-center justify-center gap-2 border border-champagne-gold/60"
+          >
+            <span>Confirm My RSVP Response</span>
+            <i class="ph-bold ph-paper-plane-right text-base"></i>
+          </button>
+        </form>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- MODAL: CONFIRMATION SUCCESS CELEBRATION                                   -->
+    <!-- ========================================================================= -->
+    <div id="success-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md hidden transition-opacity duration-300">
+      <div class="luxury-card rounded-3xl p-6 sm:p-8 max-w-md w-full border border-champagne-gold shadow-2xl text-center relative">
+        
+        <div class="w-16 h-16 rounded-full bg-wine-900 text-champagne-bright flex items-center justify-center text-3xl mx-auto mb-4 border border-champagne-gold shadow-gold-glow">
+          <i class="ph-fill ph-crown"></i>
+        </div>
+
+        <p class="text-xs uppercase tracking-[0.3em] font-semibold text-wine-800">Response Recorded</p>
+        <h3 class="font-serif text-3xl text-wine-950 font-bold mt-1 mb-2">Maraming Salamat!</h3>
+        <p class="text-xs sm:text-sm text-charcoal/75 leading-relaxed mb-6" id="success-modal-msg">
+          Your response for Alexandra's 18th Debut has been officially registered in the guestbook.
+        </p>
+
+        <!-- Summary Details Box -->
+        <div class="bg-champagne-200/70 rounded-2xl p-4 border border-champagne-400 text-xs text-charcoal space-y-2 text-left mb-6 font-medium">
+          <div class="flex justify-between">
+            <span class="text-charcoal/60">Guest Name:</span>
+            <span id="summary-guest-name" class="font-bold text-wine-950">-</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-charcoal/60">Seating Table:</span>
+            <span id="summary-guest-table" class="font-semibold text-wine-900">-</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-charcoal/60">Attendance:</span>
+            <span id="summary-attendance-status" class="font-bold text-wine-700">-</span>
+          </div>
+          <div class="flex justify-between" id="summary-seats-row">
+            <span class="text-charcoal/60">Total Seats Reserved:</span>
+            <span id="summary-total-seats" class="font-bold text-wine-900">-</span>
+          </div>
+          <div class="flex justify-between" id="summary-tradition-row">
+            <span class="text-charcoal/60">Traditions Role:</span>
+            <span id="summary-tradition-role" class="font-bold text-wine-900">-</span>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-2.5">
+          <button 
+            onclick="exportEventToGoogleCalendar()"
+            class="w-full py-3 rounded-full bg-champagne-gold hover:bg-champagne-bright text-wine-950 font-semibold text-xs uppercase tracking-wider transition flex items-center justify-center gap-2 shadow"
+          >
+            <i class="ph-bold ph-calendar-plus text-base"></i>
+            <span>Add to Google Calendar</span>
+          </button>
+          
+          <button 
+            onclick="closeSuccessModal()" 
+            class="w-full py-2.5 rounded-full border border-champagne-400 text-xs font-semibold text-wine-900 hover:bg-champagne-200 transition"
+          >
+            Return to Welcome Page
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- MODAL: PASSCODE ACCESS GATE (Organizer Only)                               -->
+    <!-- ========================================================================= -->
+    <div id="passcode-gate-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden transition-opacity">
+      <div id="passcode-card-box" class="luxury-card rounded-3xl p-6 sm:p-8 max-w-sm w-full border border-champagne-gold shadow-2xl text-center relative">
+        <div class="w-14 h-14 rounded-full bg-wine-900 text-champagne-gold flex items-center justify-center text-2xl mx-auto mb-3 border border-champagne-gold/60 shadow-gold-glow">
+          <i class="ph-bold ph-lock-key"></i>
+        </div>
+
+        <h3 class="font-serif text-2xl text-wine-950 font-bold mb-1">Debut Organizer Portal</h3>
+        <p class="text-xs text-charcoal/70 mb-5 leading-relaxed">
+          Restricted access for Alexandra and her debut committee. Enter your passcode to unlock.
+        </p>
+
+        <form onsubmit="handlePasscodeVerification(event)" class="space-y-4">
+          <div>
+            <input 
+              type="password" 
+              id="organizer-pin-input" 
+              placeholder="Enter PIN..." 
+              class="w-full text-center tracking-[0.3em] font-mono text-lg py-3 rounded-2xl bg-champagne-50 border border-champagne-400 focus:border-wine-800 focus:ring-2 focus:ring-wine-800 outline-none text-wine-950 placeholder-charcoal/40"
+            />
+            <p id="pin-error-notice" class="hidden text-xs text-red-700 font-semibold mt-2 flex items-center justify-center gap-1">
+              <i class="ph ph-warning-circle"></i> Invalid Passcode. Please try again.
+            </p>
+          </div>
+
+          <div class="flex items-center gap-2 pt-1">
+            <button 
+              type="button" 
+              onclick="closeOrganizerGate()" 
+              class="w-1/2 py-3 rounded-2xl border border-champagne-400 text-xs font-semibold text-charcoal hover:bg-champagne-200 transition"
+            >
+              Cancel
+            </button>
+            <button 
+              type="submit" 
+              class="w-1/2 py-3 rounded-2xl bg-wine-900 text-champagne-gold text-xs font-cinzel font-bold uppercase tracking-wider hover:bg-wine-800 transition shadow"
+            >
+              Unlock
+            </button>
+          </div>
+        </form>
+
+        <p class="text-[10px] text-charcoal/50 mt-4 italic">Passcode hint: 1108 (Debut Date) or alexandra18</p>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- MODAL: ORGANIZER DASHBOARD & LIVE TRACKER                                 -->
+    <!-- ========================================================================= -->
+    <div id="organizer-dashboard-modal" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-black/85 backdrop-blur-md hidden transition-opacity">
+      <div class="bg-champagne-50 rounded-3xl border border-champagne-gold p-5 sm:p-7 max-w-6xl w-full shadow-2xl relative max-h-[94vh] flex flex-col">
+        
+        <!-- Header -->
+        <div class="flex flex-wrap items-center justify-between pb-4 border-b border-champagne-300 gap-3">
+          <div>
+            <span class="text-[10px] uppercase tracking-[0.25em] font-bold text-wine-700">Committee Administration</span>
+            <h3 class="font-serif text-2xl sm:text-3xl text-wine-950 font-bold">Alexandra's Guest Tracker</h3>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button 
+              onclick="exportTrackerDataToCsv()" 
+              class="px-3.5 py-2 rounded-xl bg-wine-900 hover:bg-wine-800 text-champagne-bright text-xs font-semibold flex items-center gap-1.5 transition shadow"
+            >
+              <i class="ph-bold ph-download-simple text-sm"></i>
+              <span>Export to CSV</span>
+            </button>
+            <button 
+              onclick="closeOrganizerDashboard()" 
+              class="w-9 h-9 rounded-full bg-champagne-200 hover:bg-champagne-300 text-charcoal flex items-center justify-center transition"
+            >
+              <i class="ph ph-x text-lg"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Real-Time Metrics Overview -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2 my-4 text-center">
+          <div class="bg-champagne-100 p-2 rounded-2xl border border-champagne-300">
+            <span class="text-[9px] uppercase font-bold text-charcoal/60">Total Invited</span>
+            <p id="stat-total-invited" class="text-xl font-serif font-bold text-wine-900 mt-0.5">64</p>
+          </div>
+          <div class="bg-champagne-100 p-2 rounded-2xl border border-champagne-300">
+            <span class="text-[9px] uppercase font-bold text-charcoal/60">Total Seats</span>
+            <p id="stat-total-seats" class="text-xl font-serif font-bold text-wine-950 mt-0.5">0</p>
+          </div>
+          <div class="bg-champagne-100 p-2 rounded-2xl border border-champagne-300">
+            <span class="text-[9px] uppercase font-bold text-charcoal/60">Confirmed</span>
+            <p id="stat-confirmed-count" class="text-xl font-serif font-bold text-wine-800 mt-0.5">0</p>
+          </div>
+          <div class="bg-champagne-100 p-2 rounded-2xl border border-champagne-300">
+            <span class="text-[9px] uppercase font-bold text-charcoal/60">Declined</span>
+            <p id="stat-declined-count" class="text-xl font-serif font-bold text-red-800 mt-0.5">0</p>
+          </div>
+          <div class="bg-champagne-100 p-2 rounded-2xl border border-champagne-300">
+            <span class="text-[9px] uppercase font-bold text-charcoal/60">🌹 Roses</span>
+            <p id="stat-roses-count" class="text-xl font-serif font-bold text-wine-900 mt-0.5">0 / 18</p>
+          </div>
+          <div class="bg-champagne-100 p-2 rounded-2xl border border-champagne-300">
+            <span class="text-[9px] uppercase font-bold text-charcoal/60">🕯️ Candles</span>
+            <p id="stat-candles-count" class="text-xl font-serif font-bold text-amber-900 mt-0.5">0 / 9</p>
+          </div>
+          <div class="bg-champagne-100 p-2 rounded-2xl border border-champagne-300">
+            <span class="text-[9px] uppercase font-bold text-charcoal/60">🥂 Toasts</span>
+            <p id="stat-toasts-count" class="text-xl font-serif font-bold text-blue-900 mt-0.5">0 / 9</p>
+          </div>
+          <div class="bg-champagne-100 p-2 rounded-2xl border border-champagne-300">
+            <span class="text-[9px] uppercase font-bold text-charcoal/60">💎 Treasures</span>
+            <p id="stat-treasures-count" class="text-xl font-serif font-bold text-purple-900 mt-0.5">0 / 18</p>
+          </div>
+        </div>
+
+        <!-- Filter Navigation Tabs -->
+        <div class="flex items-center gap-1.5 overflow-x-auto pb-2 mb-3 text-xs">
+          <span class="text-charcoal/60 text-[10px] uppercase font-bold mr-1">Filter:</span>
+          <button onclick="applyTrackerFilter('all')" id="filter-all" class="px-3 py-1 rounded-full font-semibold bg-wine-900 text-champagne-100 shrink-0">All (64)</button>
+          <button onclick="applyTrackerFilter('confirmed')" id="filter-confirmed" class="px-3 py-1 rounded-full font-semibold bg-champagne-200 text-charcoal shrink-0">Confirmed</button>
+          <button onclick="applyTrackerFilter('declined')" id="filter-declined" class="px-3 py-1 rounded-full font-semibold bg-champagne-200 text-charcoal shrink-0">Declined</button>
+          <button onclick="applyTrackerFilter('pending')" id="filter-pending" class="px-3 py-1 rounded-full font-semibold bg-champagne-200 text-charcoal shrink-0">Pending</button>
+          <span class="text-champagne-300">|</span>
+          <button onclick="applyTrackerFilter('Table 1: VIP')" id="filter-t1" class="px-2.5 py-1 rounded-full font-medium bg-champagne-200 text-charcoal shrink-0">Table 1 VIP</button>
+          <button onclick="applyTrackerFilter('Table 2')" id="filter-t2" class="px-2.5 py-1 rounded-full font-medium bg-champagne-200 text-charcoal shrink-0">Table 2</button>
+          <button onclick="applyTrackerFilter('Table 3')" id="filter-t3" class="px-2.5 py-1 rounded-full font-medium bg-champagne-200 text-charcoal shrink-0">Table 3</button>
+          <button onclick="applyTrackerFilter('Table 4')" id="filter-t4" class="px-2.5 py-1 rounded-full font-medium bg-champagne-200 text-charcoal shrink-0">Table 4</button>
+          <button onclick="applyTrackerFilter('Table 5')" id="filter-t5" class="px-2.5 py-1 rounded-full font-medium bg-champagne-200 text-charcoal shrink-0">Table 5</button>
+          <button onclick="applyTrackerFilter('Table 6')" id="filter-t6" class="px-2.5 py-1 rounded-full font-medium bg-champagne-200 text-charcoal shrink-0">Table 6</button>
+          <button onclick="applyTrackerFilter('Table 7')" id="filter-t7" class="px-2.5 py-1 rounded-full font-medium bg-champagne-200 text-charcoal shrink-0">Table 7</button>
+          <button onclick="applyTrackerFilter('Table 8')" id="filter-t8" class="px-2.5 py-1 rounded-full font-medium bg-champagne-200 text-charcoal shrink-0">Table 8</button>
+          <button onclick="applyTrackerFilter('Table 9')" id="filter-t9" class="px-2.5 py-1 rounded-full font-medium bg-champagne-200 text-charcoal shrink-0">Table 9</button>
+          <button onclick="applyTrackerFilter('Table 10')" id="filter-t10" class="px-2.5 py-1 rounded-full font-medium bg-champagne-200 text-charcoal shrink-0">Table 10</button>
+        </div>
+
+        <!-- Table View -->
+        <div class="overflow-x-auto flex-grow rounded-2xl border border-champagne-300 bg-white">
+          <table class="w-full text-left text-xs divide-y divide-champagne-200">
+            <thead class="bg-champagne-100 uppercase tracking-wider text-[10px] text-charcoal/70 sticky top-0">
+              <tr>
+                <th class="py-3 px-3.5">Guest Name</th>
+                <th class="py-3 px-3.5">Table</th>
+                <th class="py-3 px-3.5">Tradition Role</th>
+                <th class="py-3 px-3.5">Status</th>
+                <th class="py-3 px-3.5">Seats</th>
+                <th class="py-3 px-3.5">Companions</th>
+                <th class="py-3 px-3.5">Song Request</th>
+                <th class="py-3 px-3.5">Message Note</th>
+              </tr>
+            </thead>
+            <tbody id="tracker-table-body" class="divide-y divide-champagne-100 text-charcoal">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Action Footer -->
+        <div class="pt-3 mt-3 border-t border-champagne-300 flex items-center justify-between text-xs text-charcoal/60">
+          <span>Responses persist locally on your browser.</span>
+          <button onclick="resetGuestDataPrompt()" class="text-red-700 hover:underline">Reset Demo Responses</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast Notification Banner -->
+    <div id="toast-banner" class="fixed bottom-6 right-6 z-50 bg-wine-950 text-champagne-100 border border-champagne-gold/60 px-5 py-3 rounded-2xl shadow-royal text-xs flex items-center gap-2 transform translate-y-20 opacity-0 transition duration-300 pointer-events-none">
+      <i class="ph-bold ph-sparkle text-champagne-bright text-base"></i>
+      <span id="toast-banner-text">Notification</span>
+    </div>
+
+  </main>
+
+  <!-- Luxury Footer -->
+  <footer class="relative z-10 py-6 text-center text-xs text-champagne-gold/70 border-t border-champagne-gold/20 bg-wine-950/70 mt-12">
+    <p class="font-serif italic text-base text-champagne-100 mb-0.5">Alexandra Krishel A. Sinsuan • 18th Birthday Debut</p>
+    <p class="text-[10px] uppercase tracking-widest text-champagne-300/80">Placida Pavillion &amp; Villa • Lugam Road, Malolos, Bulacan</p>
+  </footer>
+
+  <script>
+    // Security Passcodes for Organizer Gate
+    const ORGANIZER_PINS = ["1108", "alexandra18"];
+    let isOrganizerAuthenticated = false;
+    let activeFilter = 'all';
+
+    // EXACT POLISHED GUEST LIST & EXACT TABLE AND TRADITION ROLES TO HARDCODE (64 Total)
+    const EXACT_POLISHED_GUESTS = [
+      // Table 1: VIP (8 Guests)
+      { id: "g01", name: "Sheryl Sinsuan", table: "Table 1: VIP", tradition: "Honored Debut Guest" },
+      { id: "g02", name: "Mild Delgado", table: "Table 1: VIP", tradition: "Eighteen Roses" },
+      { id: "g03", name: "Azumi Sinsuan", table: "Table 1: VIP", tradition: "Eighteen Treasures" },
+      { id: "g04", name: "Honey Delgado", table: "Table 1: VIP", tradition: "Honored Debut Guest" },
+      { id: "g05", name: "Sweet Delgado", table: "Table 1: VIP", tradition: "Eighteen Treasures" },
+      { id: "g06", name: "Manuel Delgado", table: "Table 1: VIP", tradition: "Eighteen Roses & Nine Toasts" },
+      { id: "g07", name: "Greg Igup", table: "Table 1: VIP", tradition: "Eighteen Roses" },
+      { id: "g08", name: "Love Delgado", table: "Table 1: VIP", tradition: "Eighteen Treasures" },
+
+      // Table 2 (9 Guests)
+      { id: "g09", name: "Alexander Delgado", table: "Table 2", tradition: "Eighteen Roses" },
+      { id: "g10", name: "Lody Delgado", table: "Table 2", tradition: "Eighteen Treasures" },
+      { id: "g11", name: "David Cristobal", table: "Table 2", tradition: "Eighteen Roses" },
+      { id: "g12", name: "Noel Cristobal", table: "Table 2", tradition: "Nine Toasts" },
+      { id: "g13", name: "Unilisa Cristobal", table: "Table 2", tradition: "Eighteen Treasures" },
+      { id: "g14", name: "Lordes Maghanoy", table: "Table 2", tradition: "Eighteen Treasures" },
+      { id: "g15", name: "Lorraine Maghanoy", table: "Table 2", tradition: "Eighteen Treasures" },
+      { id: "g16", name: "Elvira Delgado", table: "Table 2", tradition: "Eighteen Treasures" },
+      { id: "g17", name: "Ella Delgado", table: "Table 2", tradition: "Eighteen Treasures" },
+
+      // Table 3 (5 Guests)
+      { id: "g18", name: "Amy Dela Cruz", table: "Table 3", tradition: "Eighteen Treasures" },
+      { id: "g19", name: "Timothy Dela Cruz", table: "Table 3", tradition: "Eighteen Roses" },
+      { id: "g20", name: "Charm Dela Cruz", table: "Table 3", tradition: "Eighteen Treasures" },
+      { id: "g21", name: "Jordan Dela Cruz", table: "Table 3", tradition: "Eighteen Roses" },
+      { id: "g22", name: "Khymm Dela Cruz", table: "Table 3", tradition: "Eighteen Treasures" },
+
+      // Table 4 (8 Guests)
+      { id: "g23", name: "Nancy Manuel", table: "Table 4", tradition: "Eighteen Treasures" },
+      { id: "g24", name: "Peter Manuel", table: "Table 4", tradition: "Nine Toasts" },
+      { id: "g25", name: "Matthew Manuel", table: "Table 4", tradition: "Eighteen Roses" },
+      { id: "g26", name: "Josiah Manuel", table: "Table 4", tradition: "Eighteen Roses" },
+      { id: "g27", name: "Princess Gonzales", table: "Table 4", tradition: "Eighteen Treasures" },
+      { id: "g28", name: "Kersten Ventura", table: "Table 4", tradition: "Eighteen Treasures" },
+      { id: "g29", name: "Axel Lasola", table: "Table 4", tradition: "Nine Toasts" },
+      { id: "g30", name: "Isa Lasola", table: "Table 4", tradition: "Honored Debut Guest" },
+
+      // Table 5 (9 Guests)
+      { id: "g31", name: "Ate Jo", table: "Table 5", tradition: "Honored Debut Guest" },
+      { id: "g32", name: "Catherine Peralta", table: "Table 5", tradition: "Eighteen Treasures" },
+      { id: "g33", name: "Bernardo Peralta", table: "Table 5", tradition: "Nine Toasts" },
+      { id: "g34", name: "Martina Deus", table: "Table 5", tradition: "Honored Debut Guest" },
+      { id: "g35", name: "May Deus", table: "Table 5", tradition: "Eighteen Treasures" },
+      { id: "g36", name: "Benlord Deus", table: "Table 5", tradition: "Honored Debut Guest" },
+      { id: "g37", name: "Sky Athena", table: "Table 5", tradition: "Eighteen Treasures" },
+      { id: "g38", name: "Shariffa Mohammad", table: "Table 5", tradition: "Honored Debut Guest" },
+      { id: "g39", name: "Wagirna Mohammad", table: "Table 5", tradition: "Honored Debut Guest" },
+
+      // Table 6 (6 Guests)
+      { id: "g40", name: "Vaughn Sambile", table: "Table 6", tradition: "Eighteen Roses" },
+      { id: "g41", name: "John Herrera", table: "Table 6", tradition: "Eighteen Roses" },
+      { id: "g42", name: "John Magali", table: "Table 6", tradition: "Nine Toasts" },
+      { id: "g43", name: "Miguel Teodoro", table: "Table 6", tradition: "Eighteen Roses" },
+      { id: "g44", name: "Clyve Camaring", table: "Table 6", tradition: "Eighteen Roses" },
+      { id: "g45", name: "Benjamine Punla", table: "Table 6", tradition: "Eighteen Roses" },
+
+      // Table 7 (7 Guests)
+      { id: "g46", name: "Gabrielle Enrile", table: "Table 7", tradition: "Nine Candles" },
+      { id: "g47", name: "Eyonie Martin", table: "Table 7", tradition: "Nine Candles" },
+      { id: "g48", name: "Naomi Utleg", table: "Table 7", tradition: "Nine Candles" },
+      { id: "g49", name: "James Eustaquio", table: "Table 7", tradition: "Eighteen Roses" },
+      { id: "g50", name: "Kaye Romero", table: "Table 7", tradition: "Nine Candles" },
+      { id: "g51", name: "Anica Benedicto", table: "Table 7", tradition: "Nine Candles" },
+      { id: "g52", name: "Kashmere Arciaga", table: "Table 7", tradition: "Honored Debut Guest" },
+
+      // Table 8 (7 Guests)
+      { id: "g53", name: "Aira Shi", table: "Table 8", tradition: "Honored Debut Guest" },
+      { id: "g54", name: "Sam Datuin", table: "Table 8", tradition: "Honored Debut Guest" },
+      { id: "g55", name: "Denisse Gutierrez", table: "Table 8", tradition: "Honored Debut Guest" },
+      { id: "g56", name: "Zoe Tanghal", table: "Table 8", tradition: "Nine Candles" },
+      { id: "g57", name: "Tayshaun Morales", table: "Table 8", tradition: "Nine Toasts" },
+      { id: "g58", name: "Simoun Artacho", table: "Table 8", tradition: "Eighteen Roses" },
+      { id: "g59", name: "Micah Mateo", table: "Table 8", tradition: "Honored Debut Guest" },
+
+      // Table 9 (7 Guests)
+      { id: "g60", name: "John Medina", table: "Table 9", tradition: "Eighteen Roses" },
+      { id: "g61", name: "Angel Bautista", table: "Table 9", tradition: "Nine Candles" },
+      { id: "g62", name: "Xyrene Geronimo", table: "Table 9", tradition: "Nine Candles" },
+      { id: "g63", name: "Precious Sebastian", table: "Table 9", tradition: "Nine Candles" },
+      { id: "g64", name: "Diana Atienza", table: "Table 9", tradition: "Nine Toasts" },
+      { id: "g65", name: "Khate Ramirez", table: "Table 9", tradition: "Honored Debut Guest" },
+      { id: "g66", name: "Krizzia Cruz", table: "Table 9", tradition: "Honored Debut Guest" },
+
+      // Table 10 (2 Guests)
+      { id: "g67", name: "Devan Sanchez", table: "Table 10", tradition: "Eighteen Roses" },
+      { id: "g68", name: "Lyanna Cruz", table: "Table 10", tradition: "Nine Toasts" }
+    ];
+
+    // LocalStorage Cache Key (bumped to v5 to prevent stale caches)
+    const STORAGE_KEY = 'alexandra_rsvp_v5';
+
+    function initializeGuestRegistry() {
+      try {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored) {
+          return JSON.parse(stored);
+        }
+      } catch (err) {
+        console.error("Storage error:", err);
+      }
+
+      // Populate default state for 64 guests
+      return EXACT_POLISHED_GUESTS.map(g => ({
+        ...g,
+        status: 'pending', // 'attending' | 'declining' | 'pending'
+        seats: 1,
+        companions: [],
+        phone: '',
+        song: '',
+        message: '',
+        answered: false,
+        updatedAt: null
+      }));
+    }
+
+    function saveGuestRegistry(data) {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      } catch (err) {
+        console.error("Failed to save registry:", err);
+      }
+      refreshMetricsDisplay();
+    }
+
+    let guestRegistry = initializeGuestRegistry();
+    let currentActiveGuest = null;
+
+    // View Navigation Handler
+    function navigateTo(targetView) {
+      const landing = document.getElementById('landing-view');
+      const rsvp = document.getElementById('rsvp-view');
+      const navBackBtn = document.getElementById('nav-back-btn');
+
+      if (targetView === 'rsvp-view') {
+        landing.classList.add('hidden');
+        rsvp.classList.remove('hidden');
+        navBackBtn.classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        rsvp.classList.add('hidden');
+        landing.classList.remove('hidden');
+        navBackBtn.classList.add('hidden');
+      }
+    }
+
+    function handleGuestSearch(inputVal) {
+      const dropdown = document.getElementById('search-results-dropdown');
+      const clearBtn = document.getElementById('search-clear-btn');
+      const query = inputVal.trim().toLowerCase();
+
+      if (query.length === 0) {
+        dropdown.classList.add('hidden');
+        dropdown.innerHTML = '';
+        clearBtn.classList.add('hidden');
+        return;
+      }
+
+      clearBtn.classList.remove('hidden');
+
+      const matches = guestRegistry.filter(g => g.name.toLowerCase().includes(query));
+      dropdown.innerHTML = '';
+
+      if (matches.length === 0) {
+        dropdown.innerHTML = `
+          <div class="p-5 text-center text-xs text-charcoal/75">
+            <i class="ph ph-magnifying-glass text-2xl text-wine-800 mb-1.5 block"></i>
+            <p class="font-bold text-wine-950">No guest found matching "${escapeHtml(inputVal)}"</p>
+            <p class="mt-1 text-charcoal/60 leading-relaxed">
+              Kindly check spelling or reach out to Alexandra or her family.
+            </p>
+          </div>
+        `;
+        dropdown.classList.remove('hidden');
+        return;
+      }
+
+      matches.forEach(g => {
+        const item = document.createElement('div');
+        item.className = "p-3.5 hover:bg-champagne-200/80 cursor-pointer flex items-center justify-between transition gap-2";
+
+        let badgeMarkup = '<span class="text-[9px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded-full bg-champagne-200 text-charcoal">Honored Guest</span>';
+        if (g.tradition === "Eighteen Roses") {
+          badgeMarkup = '<span class="text-[9px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded-full bg-wine-100 text-wine-900 border border-wine-300">🌹 Roses</span>';
+        } else if (g.tradition === "Nine Candles") {
+          badgeMarkup = '<span class="text-[9px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300">🕯️ Candles</span>';
+        } else if (g.tradition === "Nine Toasts") {
+          badgeMarkup = '<span class="text-[9px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded-full bg-blue-100 text-blue-900 border border-blue-300">🥂 Toasts</span>';
+        } else if (g.tradition === "Eighteen Treasures") {
+          badgeMarkup = '<span class="text-[9px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded-full bg-purple-100 text-purple-900 border border-purple-300">💎 Treasures</span>';
+        } else if (g.tradition === "Eighteen Roses & Nine Toasts") {
+          badgeMarkup = '<span class="text-[9px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded-full bg-amber-100 text-wine-950 border border-amber-300">🌹 Roses &amp; 🥂 Toasts</span>';
+        }
+
+        item.innerHTML = `
+          <div class="text-left">
+            <div class="text-sm font-bold text-wine-950">${escapeHtml(g.name)}</div>
+            <div class="text-[11px] text-charcoal/60 flex items-center gap-1.5 mt-0.5">
+              <span class="font-medium text-wine-800">${escapeHtml(g.table)}</span>
+              <span>•</span>
+              <span>${g.answered ? (g.status === 'attending' ? '✓ Attending' : 'Declined') : 'Pending RSVP'}</span>
+            </div>
+          </div>
+          <div class="shrink-0 text-right">
+            ${badgeMarkup}
+          </div>
+        `;
+
+        item.onclick = () => selectGuestForRsvp(g);
+        dropdown.appendChild(item);
+      });
+
+      dropdown.classList.remove('hidden');
+    }
+
+    function clearSearchInput() {
+      const input = document.getElementById('guest-search-input');
+      input.value = '';
+      handleGuestSearch('');
+      input.focus();
+    }
+
+    // Selecting a guest to open personalized RSVP view
+    function selectGuestForRsvp(guest) {
+      currentActiveGuest = guest;
+
+      document.getElementById('search-results-dropdown').classList.add('hidden');
+      document.getElementById('guest-search-input').value = guest.name;
+
+      // Update greeting and locked Table Assignment
+      document.getElementById('guest-greeting-name').textContent = `Welcome, ${guest.name}!`;
+      document.getElementById('guest-table-badge').textContent = guest.table;
+
+      // Update locked Tradition Role presentation
+      const iconContainer = document.getElementById('tradition-symbol-container');
+      const titleEl = document.getElementById('tradition-role-title');
+      const descEl = document.getElementById('tradition-role-desc');
+
+      titleEl.textContent = guest.tradition;
+
+      if (guest.tradition === "Eighteen Roses") {
+        iconContainer.innerHTML = '🌹';
+        descEl.textContent = "You are designated for the ceremonial cotillion dance of honor with Alexandra.";
+      } else if (guest.tradition === "Nine Candles") {
+        iconContainer.innerHTML = '🕯️';
+        descEl.textContent = "You will kinde a candle of wisdom and offer guiding wishes for Alexandra's adulthood.";
+      } else if (guest.tradition === "Nine Toasts") {
+        iconContainer.innerHTML = '🥂';
+        descEl.textContent = "You will raise a glass of celebration and offer a personal toast in Alexandra's honor.";
+      } else if (guest.tradition === "Eighteen Treasures") {
+        iconContainer.innerHTML = `
+          <svg class="w-6 h-6 text-champagne-bright" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M5 4h14a2 2 0 0 1 2 2v2H3V6a2 2 0 0 1 2-2zm-2 5h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9zm8 2a2 2 0 0 0-2 2v1h4v-1a2 2 0 0 0-2-2z"/>
+          </svg>
+        `;
+        descEl.textContent = "You will present a symbolic keepsake, token, and blessing for Alexandra's future journey.";
+      } else if (guest.tradition === "Eighteen Roses & Nine Toasts") {
+        iconContainer.innerHTML = '🌹🥂';
+        descEl.textContent = "You are honored with dual roles: dancing the cotillion of honor (Roses) and offering a tribute toast (Toasts).";
+      } else {
+        iconContainer.innerHTML = '✨';
+        descEl.textContent = "A seat has been graciously reserved for you to celebrate and dine with us at Placida Pavillion.";
+      }
+
+      // Pre-fill existing responses if previously submitted
+      const isDeclined = guest.status === 'declining';
+      const radios = document.getElementsByName('attendance-status');
+      radios.forEach(r => {
+        if (isDeclined && r.value === 'declining') r.checked = true;
+        if (!isDeclined && r.value === 'attending') r.checked = true;
+      });
+
+      toggleAttendanceFields(!isDeclined);
+
+      const companionCount = (guest.seats && guest.seats > 1) ? guest.seats - 1 : 0;
+      document.getElementById('companion-count-select').value = companionCount;
+      renderCompanionNameInputs(companionCount, guest.companions || []);
+
+      document.getElementById('guest-contact').value = guest.phone || '';
+      document.getElementById('guest-song').value = guest.song || '';
+      document.getElementById('guest-message').value = guest.message || '';
+
+      navigateTo('rsvp-view');
+    }
+
+    function toggleAttendanceFields(isAttending) {
+      const container = document.getElementById('attending-fields-container');
+      if (isAttending) {
+        container.classList.remove('opacity-40', 'pointer-events-none');
+      } else {
+        container.classList.add('opacity-40', 'pointer-events-none');
+      }
+    }
+
+    function renderCompanionNameInputs(countStr, existingNames = []) {
+      const count = parseInt(countStr, 10);
+      const container = document.getElementById('companion-inputs-container');
+      container.innerHTML = '';
+
+      if (count > 0) {
+        container.classList.remove('hidden');
+        const heading = document.createElement('p');
+        heading.className = "text-[11px] font-bold uppercase tracking-wider text-wine-900";
+        heading.textContent = "Companion Full Name(s):";
+        container.appendChild(heading);
+
+        for (let i = 1; i <= count; i++) {
+          const input = document.createElement('input');
+          input.type = 'text';
+          input.required = true;
+          input.name = `companion_${i}`;
+          input.value = existingNames[i - 1] || '';
+          input.placeholder = `Companion #${i} Full Name`;
+          input.className = "w-full px-3.5 py-2.5 rounded-xl bg-champagne-50 border border-champagne-400 focus:outline-none focus:ring-2 focus:ring-wine-800 text-sm text-charcoal placeholder-charcoal/40";
+          container.appendChild(input);
+        }
+      } else {
+        container.classList.add('hidden');
+      }
+    }
+
+    function handleFormSubmission(e) {
+      e.preventDefault();
+
+      if (!currentActiveGuest) {
+        displayToast("No guest selected.");
+        return;
+      }
+
+      const attendance = document.querySelector('input[name="attendance-status"]:checked').value;
+      const isAttending = attendance === 'attending';
+      const companionCount = isAttending ? parseInt(document.getElementById('companion-count-select').value, 10) : 0;
+      const totalSeats = isAttending ? (1 + companionCount) : 0;
+
+      const companionInputs = document.querySelectorAll('#companion-inputs-container input');
+      const companions = [];
+      companionInputs.forEach(inp => {
+        if (inp.value.trim()) companions.push(inp.value.trim());
+      });
+
+      const phone = document.getElementById('guest-contact').value.trim();
+      const song = document.getElementById('guest-song').value.trim();
+      const message = document.getElementById('guest-message').value.trim();
+
+      const guestIdx = guestRegistry.findIndex(g => g.id === currentActiveGuest.id);
+      if (guestIdx === -1) return;
+
+      guestRegistry[guestIdx] = {
+        ...guestRegistry[guestIdx],
+        status: attendance,
+        seats: totalSeats,
+        companions: companions,
+        phone: phone,
+        song: isAttending ? song : '',
+        message: message,
+        answered: true,
+        updatedAt: new Date().toISOString()
+      };
+
+      saveGuestRegistry(guestRegistry);
+
+      // Celebration confetti flourish on attendance
+      if (isAttending && typeof confetti === 'function') {
+        confetti({
+          particleCount: 110,
+          spread: 80,
+          origin: { y: 0.6 },
+          colors: ['#460815', '#d4af37', '#f5d77f', '#7a1428', '#faf7f2']
+        });
+      }
+
+      // Populate Summary Modal
+      document.getElementById('summary-guest-name').textContent = guestRegistry[guestIdx].name;
+      document.getElementById('summary-guest-table').textContent = guestRegistry[guestIdx].table;
+      document.getElementById('summary-attendance-status').textContent = isAttending ? 'Graciously Attending' : 'Regretfully Declined';
+
+      const seatsRow = document.getElementById('summary-seats-row');
+      if (isAttending) {
+        seatsRow.style.display = 'flex';
+        document.getElementById('summary-total-seats').textContent = `${totalSeats} Seat(s)${companions.length ? ' (' + companions.join(', ') + ')' : ''}`;
+      } else {
+        seatsRow.style.display = 'none';
+      }
+
+      document.getElementById('summary-tradition-role').textContent = guestRegistry[guestIdx].tradition;
+      document.getElementById('success-modal-msg').textContent = isAttending
+        ? `We are delighted to celebrate with you at Placida Pavillion & Villa on November 8, 2026!`
+        : `Thank you for letting us know, ${guestRegistry[guestIdx].name}. Alexandra and her family warmly appreciate your blessings!`;
+
+      openSuccessModal();
+    }
+
+    function openSuccessModal() {
+      document.getElementById('success-modal').classList.remove('hidden');
+    }
+
+    function closeSuccessModal() {
+      document.getElementById('success-modal').classList.add('hidden');
+      navigateTo('landing-view');
+      clearSearchInput();
+    }
+
+    function exportEventToGoogleCalendar() {
+      const title = encodeURIComponent("Alexandra Krishel's 18th Debut: An Evening of Elegance & Bloom");
+      const details = encodeURIComponent("Join us for the 18th Birthday Debut celebration of Alexandra Krishel A. Sinsuan at Placida Pavillion & Villa.");
+      const location = encodeURIComponent("Placida Pavillion & Villa, Lugam Road, Malolos, Bulacan");
+      const dates = "20261108T093000Z/20261108T150000Z";
+      const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`;
+      window.open(url, '_blank');
+      displayToast("Opening Google Calendar...");
+    }
+
+    function requestOrganizerGate() {
+      if (isOrganizerAuthenticated) {
+        openOrganizerDashboard();
+      } else {
+        const modal = document.getElementById('passcode-gate-modal');
+        const input = document.getElementById('organizer-pin-input');
+        const notice = document.getElementById('pin-error-notice');
+        notice.classList.add('hidden');
+        input.value = '';
+        modal.classList.remove('hidden');
+        setTimeout(() => input.focus(), 150);
+      }
+    }
+
+    function closeOrganizerGate() {
+      document.getElementById('passcode-gate-modal').classList.add('hidden');
+    }
+
+    function handlePasscodeVerification(e) {
+      e.preventDefault();
+      const entered = document.getElementById('organizer-pin-input').value.trim();
+      const notice = document.getElementById('pin-error-notice');
+      const box = document.getElementById('passcode-card-box');
+
+      if (ORGANIZER_PINS.includes(entered.toLowerCase())) {
+        isOrganizerAuthenticated = true;
+        closeOrganizerGate();
+        openOrganizerDashboard();
+        displayToast("Organizer session authenticated.");
+      } else {
+        notice.classList.remove('hidden');
+        box.classList.add('animate-shake');
+        setTimeout(() => box.classList.remove('animate-shake'), 400);
+      }
+    }
+
+    function openOrganizerDashboard() {
+      refreshMetricsDisplay();
+      renderTrackerTable();
+      document.getElementById('organizer-dashboard-modal').classList.remove('hidden');
+    }
+
+    function closeOrganizerDashboard() {
+      document.getElementById('organizer-dashboard-modal').classList.add('hidden');
+    }
+
+    function applyTrackerFilter(filterVal) {
+      activeFilter = filterVal;
+
+      const filterBtns = document.querySelectorAll('#organizer-dashboard-modal .overflow-x-auto button');
+      filterBtns.forEach(btn => {
+        btn.classList.remove('bg-wine-900', 'text-champagne-100');
+        btn.classList.add('bg-champagne-200', 'text-charcoal');
+      });
+
+      const btnId = filterVal === 'Table 1: VIP' ? 'filter-t1' : (filterVal.startsWith('Table ') ? 'filter-t' + filterVal.replace('Table ', '') : 'filter-' + filterVal);
+      const activeBtn = document.getElementById(btnId);
+      if (activeBtn) {
+        activeBtn.classList.remove('bg-champagne-200', 'text-charcoal');
+        activeBtn.classList.add('bg-wine-900', 'text-champagne-100');
+      }
+
+      renderTrackerTable();
+    }
+
+    function refreshMetricsDisplay() {
+      const answeredList = guestRegistry.filter(g => g.answered);
+      const attendingList = guestRegistry.filter(g => g.status === 'attending');
+      const declinedList = guestRegistry.filter(g => g.status === 'declining');
+
+      const totalSeats = attendingList.reduce((sum, g) => sum + (g.seats || 1), 0);
+
+      document.getElementById('nav-badge-answered').textContent = answeredList.length;
+      document.getElementById('stat-total-invited').textContent = guestRegistry.length; // 64
+      document.getElementById('stat-total-seats').textContent = totalSeats;
+      document.getElementById('stat-confirmed-count').textContent = attendingList.length;
+      document.getElementById('stat-declined-count').textContent = declinedList.length;
+
+      // Traditions counts (attending)
+      const roses = attendingList.filter(g => g.tradition.includes("Roses")).length;
+      const candles = attendingList.filter(g => g.tradition.includes("Candles")).length;
+      const toasts = attendingList.filter(g => g.tradition.includes("Toasts")).length;
+      const treasures = attendingList.filter(g => g.tradition.includes("Treasures")).length;
+
+      document.getElementById('stat-roses-count').textContent = `${roses} / 18`;
+      document.getElementById('stat-candles-count').textContent = `${candles} / 9`;
+      document.getElementById('stat-toasts-count').textContent = `${toasts} / 9`;
+      document.getElementById('stat-treasures-count').textContent = `${treasures} / 18`;
+    }
+
+    function renderTrackerTable() {
+      const tbody = document.getElementById('tracker-table-body');
+      tbody.innerHTML = '';
+
+      let filtered = guestRegistry;
+      if (activeFilter === 'confirmed') {
+        filtered = guestRegistry.filter(g => g.status === 'attending');
+      } else if (activeFilter === 'declined') {
+        filtered = guestRegistry.filter(g => g.status === 'declining');
+      } else if (activeFilter === 'pending') {
+        filtered = guestRegistry.filter(g => g.status === 'pending');
+      } else if (activeFilter.startsWith('Table')) {
+        filtered = guestRegistry.filter(g => g.table === activeFilter);
+      }
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="8" class="p-4 text-center text-charcoal/50 italic">No guests match this criteria.</td></tr>`;
+        return;
+      }
+
+      filtered.forEach(g => {
+        const tr = document.createElement('tr');
+        tr.className = "hover:bg-champagne-100/60 transition";
+
+        let statusBadge = '<span class="text-[9px] uppercase font-bold text-charcoal/40 bg-champagne-200 px-2 py-0.5 rounded-full">Pending</span>';
+        if (g.status === 'attending') {
+          statusBadge = '<span class="text-[9px] uppercase font-bold text-wine-900 bg-champagne-gold/35 px-2 py-0.5 rounded-full">Attending</span>';
+        } else if (g.status === 'declining') {
+          statusBadge = '<span class="text-[9px] uppercase font-bold text-red-800 bg-red-100 px-2 py-0.5 rounded-full">Declined</span>';
+        }
+
+        tr.innerHTML = `
+          <td class="py-2.5 px-3.5 font-bold text-wine-950">
+            <div>${escapeHtml(g.name)}</div>
+            ${g.phone ? `<div class="text-[10px] text-charcoal/50 font-normal">${escapeHtml(g.phone)}</div>` : ''}
+          </td>
+          <td class="py-2.5 px-3.5 font-medium text-[11px] text-wine-900 whitespace-nowrap">${escapeHtml(g.table)}</td>
+          <td class="py-2.5 px-3.5 text-[11px] font-semibold">${escapeHtml(g.tradition)}</td>
+          <td class="py-2.5 px-3.5">${statusBadge}</td>
+          <td class="py-2.5 px-3.5 text-[11px] font-bold">${g.status === 'attending' ? (g.seats || 1) : 0}</td>
+          <td class="py-2.5 px-3.5 text-[11px] text-charcoal/70">${g.companions && g.companions.length ? escapeHtml(g.companions.join(', ')) : '-'}</td>
+          <td class="py-2.5 px-3.5 text-[11px] italic max-w-[130px] truncate" title="${escapeHtml(g.song || '')}">${escapeHtml(g.song || '-')}</td>
+          <td class="py-2.5 px-3.5 text-[11px] max-w-[180px] truncate" title="${escapeHtml(g.message || '')}">${escapeHtml(g.message || '-')}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function exportTrackerDataToCsv() {
+      const headers = ["Guest ID", "Full Name", "Assigned Table", "Tradition Role", "RSVP Status", "Total Seats", "Companion Names", "Phone", "Song Request", "Heartfelt Message"];
+      const rows = guestRegistry.map(g => [
+        `"${g.id}"`,
+        `"${(g.name || '').replace(/"/g, '""')}"`,
+        `"${g.table}"`,
+        `"${g.tradition}"`,
+        `"${g.status}"`,
+        g.status === 'attending' ? (g.seats || 1) : 0,
+        `"${(g.companions || []).join(', ').replace(/"/g, '""')}"`,
+        `"${(g.phone || '').replace(/"/g, '""')}"`,
+        `"${(g.song || '').replace(/"/g, '""')}"`,
+        `"${(g.message || '').replace(/"/g, '""')}"`
+      ]);
+
+      const csvContent = "data:text/csv;charset=utf-8," + [headers.join(","), ...rows.map(e => e.join(","))].join("\n");
+      const link = document.createElement("a");
+      link.setAttribute("href", encodeURI(csvContent));
+      link.setAttribute("download", `Alexandra_18th_Debut_RSVP_List_${new Date().toISOString().slice(0,10)}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      displayToast("Guest list spreadsheet exported as CSV!");
+    }
+
+    function resetGuestDataPrompt() {
+      if (confirm("Reset all guest answers back to initial unconfirmed state?")) {
+        localStorage.removeItem(STORAGE_KEY);
+        guestRegistry = initializeGuestRegistry();
+        saveGuestRegistry(guestRegistry);
+        renderTrackerTable();
+        displayToast("Registry reset to defaults.");
+      }
+    }
+
+    function displayToast(message) {
+      const banner = document.getElementById('toast-banner');
+      const text = document.getElementById('toast-banner-text');
+      text.textContent = message;
+      banner.classList.remove('translate-y-20', 'opacity-0');
+      setTimeout(() => {
+        banner.classList.add('translate-y-20', 'opacity-0');
+      }, 3400);
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function initAmbientParticles() {
+      const canvas = document.getElementById('ambient-canvas');
+      const ctx = canvas.getContext('2d');
+      let w = canvas.width = window.innerWidth;
+      let h = canvas.height = window.innerHeight;
+
+      window.addEventListener('resize', () => {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+      });
+
+      const count = 42;
+      const particles = [];
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          r: Math.random() * 2.2 + 0.6,
+          vy: Math.random() * 0.3 + 0.12,
+          vx: (Math.random() - 0.5) * 0.25,
+          alpha: Math.random() * 0.6 + 0.2,
+          pulse: Math.random() * 0.02
+        });
+      }
+
+      function render() {
+        ctx.clearRect(0, 0, w, h);
+        particles.forEach(p => {
+          p.y -= p.vy;
+          p.x += p.vx;
+          p.alpha += Math.sin(p.pulse) * 0.006;
+
+          if (p.y < 0) {
+            p.y = h + 10;
+            p.x = Math.random() * w;
+          }
+
+          ctx.fillStyle = `rgba(212, 175, 55, ${Math.max(0.12, p.alpha)})`;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fill();
+        });
+        requestAnimationFrame(render);
+      }
+      render();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      initAmbientParticles();
+      refreshMetricsDisplay();
+    });
+  </script>
+</body>
+</html>
