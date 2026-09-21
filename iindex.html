@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Alexandra's 18th Debutante Gala</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel+Decorative:wght@400;600;700;900&family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --deep-wine: #0E0305;
+      --burgundy-core: #22080D;
+      --burgundy-surface: #340D15;
+      --burgundy-glow: rgba(91, 14, 27, 0.7);
+      --gold-foil: #E8C15A;
+      --gold-bright: #FFF2A6;
+      --gold-dark: #8C6F24;
+      --gold-gradient: linear-gradient(135deg, #FFF0B3 0%, #D4AF37 40%, #8C6A18 80%, #FFEAA7 100%);
+      --text-creme: #FAF3E8;
+      --text-blush: #E6BAC2;
+      --text-muted: #BFA4A9;
+      --filigree-gold: rgba(232, 193, 90, 0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--deep-wine);
+      font-family: 'Montserrat', sans-serif;
+      color: var(--text-creme);
+      min-height: 100vh;
+      overflow-x: hidden;
+      display: flex;
+      justify-content: center;
+      position: relative;
+      background-image: 
+        radial-gradient(ellipse at 50% 0%, #4D0E1A 0%, transparent 65%),
+        radial-gradient(ellipse at 50% 100%, #300810 0%, transparent 70%),
+        radial-gradient(circle at 10% 40%, rgba(199, 125, 136, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 90% 70%, rgba(212, 175, 55, 0.08) 0%, transparent 40%),
+        radial-gradient(rgba(212, 175, 55, 0.06) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 28px 28px;
+    }
+
+    /* Floating Bokeh Embers */
+    .ember {
+      position: fixed;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 235, 170, 0.8) 0%, rgba(212, 175, 55, 0) 70%);
+      pointer-events: none;
+      z-index: 1;
+      animation: floatUp 14s infinite linear;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(105vh) scale(0.6); opacity: 0; }
+      20% { opacity: 0.8; }
+      80% { opacity: 0.6; }
+      100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+    }
+
+    .main-viewport {
+      width: 100%;
+      max-width: 440px;
+      position: relative;
+      z-index: 2;
+      padding: 24px 14px 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ==========================================================
+       STAGE 1: 3D LUXURY ENVELOPE INTRO
+    ========================================================== */
+    #envelope-screen {
+      width: 100%;
+      min-height: 86vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      transition: all 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .invitation-crest {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 13px;
+      letter-spacing: 6px;
+      color: var(--gold-foil);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .invitation-crest::before,
+    .invitation-crest::after {
+      content: "⚜";
+      color: var(--gold-foil);
+      font-size: 14px;
+    }
+
+    .envelope-chassis {
+      width: 330px;
+      height: 230px;
+      position: relative;
+      border-radius: 14px;
+      background: linear-gradient(145deg, #2D0810, #160307);
+      box-shadow: 
+        0 25px 60px rgba(0,0,0,0.85),
+        0 0 0 1px var(--gold-foil),
+        inset 0 0 20px rgba(0,0,0,0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      perspective: 800px;
+    }
+
+    .corner-flourish {
+      position: absolute;
+      width: 28px;
+      height: 28px;
+      border: 2px solid var(--gold-foil);
+      pointer-events: none;
+    }
+    .corner-tl { top: 6px; left: 6px; border-right: none; border-bottom: none; }
+    .corner-tr { top: 6px; right: 6px; border-left: none; border-bottom: none; }
+    .corner-bl { bottom: 6px; left: 6px; border-right: none; border-top: none; }
+    .corner-br { bottom: 6px; right: 6px; border-left: none; border-top: none; }
+
+    .envelope-top-fold {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 165px solid transparent;
+      border-right: 165px solid transparent;
+      border-top: 120px solid #380C15;
+      transform-origin: top;
+      transition: transform 0.7s ease;
+      z-index: 4;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));
+    }
+
+    .envelope-bottom-pocket {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 165px solid #28070E;
+      border-right: 165px solid #28070E;
+      border-top: 110px solid transparent;
+      border-bottom: 120px solid #1E0409;
+      border-radius: 0 0 14px 14px;
+      z-index: 2;
+    }
+
+    .monogram-wax-seal {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #961D30 0%, #460A13 80%);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.7), inset 0 2px 4px rgba(255,255,255,0.4);
+      position: absolute;
+      top: 50%;
+      transform: translateY(-28%);
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #AC2338;
+      animation: sealAura 3s infinite ease-in-out;
+    }
+
+    @keyframes sealAura {
+      0%, 100% { box-shadow: 0 8px 20px rgba(0,0,0,0.7), 0 0 0 0 rgba(232, 193, 90, 0.4); }
+      50% { box-shadow: 0 12px 30px rgba(0,0,0,0.8), 0 0 0 10px rgba(232, 193, 90, 0); }
+    }
+
+    .seal-letter {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 26px;
+      font-weight: 900;
+      color: var(--gold-bright);
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.9);
+    }
+
+    .envelope-callout-quote {
+      margin-top: 36px;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 19px;
+      line-height: 1.5;
+      color: var(--gold-bright);
+      max-width: 320px;
+    }
+
+    .envelope-tap-instruction {
+      margin-top: 12px;
+      font-family: 'Cinzel', serif;
+      font-size: 10.5px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold-foil);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* ==========================================================
+       STAGE 2: EXTRAVAGANT EDITORIAL SCROLL
+    ========================================================== */
+    #invitation-scroll {
+      display: none;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s ease, transform 1s ease;
+      width: 100%;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .folio-page {
+      background: linear-gradient(180deg, #1C0509 0%, #2A0A11 50%, #160407 100%);
+      border: 1px solid var(--filigree-gold);
+      border-radius: 26px;
+      position: relative;
+      padding: 44px 20px 36px;
+      box-shadow: 
+        0 25px 60px rgba(0,0,0,0.85),
+        inset 0 0 35px rgba(0,0,0,0.6);
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .folio-page::before {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      border: 1px solid rgba(232, 193, 90, 0.25);
+      border-radius: 20px;
+      pointer-events: none;
+    }
+    .folio-page::after {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border: 1px dashed rgba(232, 193, 90, 0.15);
+      border-radius: 16px;
+      pointer-events: none;
+    }
+
+    .ornate-header {
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .ornate-header .sur-title {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 10.5px;
+      letter-spacing: 4px;
+      color: var(--gold-foil);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      display: block;
+    }
+
+    .ornate-header .grand-title {
+      font-family: 'Cinzel', serif;
+      font-size: 19px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold-bright);
+      font-weight: 700;
+      text-shadow: 0 0 15px rgba(232, 193, 90, 0.4);
+    }
+
+    .baroque-scroll-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin: 10px 0 16px;
+      color: var(--gold-foil);
+      font-size: 13px;
+    }
+    .baroque-scroll-divider::before,
+    .baroque-scroll-divider::after {
+      content: "";
+      height: 1px;
+      width: 50px;
+      background: linear-gradient(90deg, transparent, var(--gold-foil));
+    }
+    .baroque-scroll-divider::after {
+      background: linear-gradient(90deg, var(--gold-foil), transparent);
+    }
+
+    .hero-preamble {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 16.5px;
+      line-height: 1.5;
+      color: var(--text-blush);
+      max-width: 320px;
+      margin: 0 auto 16px;
+    }
+
+    .hero-name {
+      font-family: 'Alex Brush', cursive;
+      font-size: clamp(52px, 14vw, 68px);
+      line-height: 1.05;
+      color: var(--gold-bright);
+      font-weight: 400;
+      text-shadow: 
+        0 0 25px rgba(232, 193, 90, 0.5),
+        2px 2px 4px rgba(0, 0, 0, 0.8);
+      margin-bottom: 4px;
+    }
+
+    .hero-sub-title {
+      font-family: 'Cinzel', serif;
+      font-size: 13px;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--text-creme);
+      margin-bottom: 20px;
+    }
+
+    /* ==========================================================
+       THE CAKE CENTERPIECE (PRECISELY CENTERED HERO BUTTON)
+    ========================================================== */
+    .cake-altar-container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 18px 0 26px;
+      position: relative;
+    }
+
+    .cake-niche-frame {
+      width: 100%;
+      max-width: 280px;
+      background: radial-gradient(circle at 50% 40%, rgba(91, 14, 27, 0.8) 0%, rgba(22, 4, 8, 0.9) 80%);
+      border: 1px solid var(--filigree-gold);
+      border-radius: 120px 120px 24px 24px;
+      padding: 24px 14px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 
+        0 15px 35px rgba(0,0,0,0.8),
+        inset 0 0 30px rgba(0,0,0,0.8);
+      position: relative;
+    }
+
+    .cake-shrine-label {
+      font-family: 'Cinzel', serif;
+      font-size: 10.5px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold-bright);
+      margin-bottom: 16px;
+      text-shadow: 0 0 10px rgba(232, 193, 90, 0.6);
+    }
+
+    .cake-btn-anchor {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      cursor: pointer;
+      width: 100%;
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .cake-btn-anchor:active {
+      transform: scale(0.93);
+    }
+
+    .cake-pedestal {
+      width: 124px;
+      height: 124px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(140, 29, 48, 0.6) 0%, rgba(28, 5, 9, 0.95) 75%);
+      border: 1.5px solid var(--gold-foil);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 
+        0 0 25px rgba(232, 193, 90, 0.3),
+        inset 0 0 15px rgba(0,0,0,0.8);
+      animation: pedestalPulse 3s infinite ease-in-out;
+      margin: 0 auto;
+    }
+
+    @keyframes pedestalPulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(232, 193, 90, 0.25); }
+      50% { transform: scale(1.05); box-shadow: 0 0 35px rgba(232, 193, 90, 0.6); }
+    }
+
+    .flame-core {
+      transform-origin: center bottom;
+      animation: candleFlicker 1.8s infinite ease-in-out alternate;
+    }
+    @keyframes candleFlicker {
+      0% { transform: scale(1) rotate(-2deg); opacity: 0.95; }
+      50% { transform: scale(1.15, 1.25) rotate(2deg); opacity: 1; filter: drop-shadow(0 0 8px #FFEAA7); }
+      100% { transform: scale(0.9, 0.9) rotate(-1deg); opacity: 0.88; }
+    }
+
+    .cake-tap-button {
+      margin-top: 18px;
+      background: var(--gold-gradient);
+      color: #21070C;
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      letter-spacing: 2px;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 10px 22px;
+      border-radius: 30px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .schedule-badge-row {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      margin: 18px 0 12px;
+    }
+
+    .schedule-capsule {
+      flex: 1;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--filigree-gold);
+      border-radius: 12px;
+      padding: 12px 6px;
+    }
+
+    .schedule-tag {
+      font-family: 'Cinzel', serif;
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold-foil);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .schedule-val {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-creme);
+    }
+
+    .strict-alert-box {
+      background: rgba(91, 14, 27, 0.5);
+      border-left: 3px solid var(--gold-foil);
+      border-radius: 8px;
+      padding: 14px 16px;
+      text-align: left;
+      font-size: 12.5px;
+      line-height: 1.5;
+      color: var(--text-creme);
+      margin-top: 14px;
+      box-shadow: inset 0 0 15px rgba(0,0,0,0.4);
+    }
+    .strict-alert-box strong {
+      color: var(--gold-bright);
+    }
+
+    /* ==========================================================
+       DRESS CODE & COLOR PALETTE
+    ========================================================== */
+    .palette-shrine {
+      background: rgba(14, 3, 5, 0.5);
+      border: 1px solid rgba(232, 193, 90, 0.3);
+      border-radius: 18px;
+      padding: 20px 14px;
+      margin-bottom: 20px;
+    }
+
+    .palette-shrine-title {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold-bright);
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .swatches-flex-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px 10px;
+    }
+
+    .swatch-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .swatch-orb {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: 2px solid var(--gold-foil);
+      box-shadow: 
+        0 6px 12px rgba(0,0,0,0.7),
+        inset 0 2px 4px rgba(255,255,255,0.25);
+      position: relative;
+    }
+
+    .swatch-orb.wine-red { background-color: #5B0E1B; }
+    .swatch-orb.dusty-pink { background-color: #C77D88; }
+    .swatch-orb.champagne-white { background-color: #FAF4EB; }
+    .swatch-orb.forest-green { background-color: #1A3723; }
+    .swatch-orb.rustic-brown { background-color: #533529; }
+    .swatch-orb.black { background-color: #121212; }
+
+    .swatch-text {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 9.5px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-blush);
+      font-weight: 500;
+    }
+
+    .attire-columns {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      text-align: left;
+    }
+
+    .attire-card-arch {
+      background: rgba(0,0,0,0.3);
+      border-left: 2px solid var(--gold-foil);
+      border-radius: 0 12px 12px 0;
+      padding: 14px 16px;
+    }
+
+    .attire-role-tag {
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: var(--gold-bright);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .attire-description {
+      font-size: 13px;
+      color: var(--text-creme);
+      line-height: 1.45;
+    }
+
+    .discouraged-text {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-top: 14px;
+      padding: 0 10px;
+    }
+
+    /* ==========================================================
+       PROGRAM TIMELINE (ROMAN CHRONICLE)
+    ========================================================== */
+    .chronicle-stream {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      text-align: left;
+      margin-top: 10px;
+    }
+
+    .chronicle-item {
+      display: flex;
+      gap: 16px;
+    }
+
+    .chronicle-numeral {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 15px;
+      font-weight: 900;
+      color: var(--gold-bright);
+      width: 32px;
+      flex-shrink: 0;
+      text-align: right;
+      padding-top: 2px;
+      text-shadow: 0 0 10px rgba(232, 193, 90, 0.4);
+    }
+
+    .chronicle-content {
+      border-left: 1.5px solid rgba(232, 193, 90, 0.35);
+      padding-left: 16px;
+      padding-bottom: 4px;
+    }
+
+    .chronicle-title {
+      font-family: 'Cinzel', serif;
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: var(--gold-foil);
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .chronicle-desc {
+      font-size: 13px;
+      color: var(--text-creme);
+      line-height: 1.4;
+    }
+
+    /* ==========================================================
+       GIFT REGISTRY & SIZING
+    ========================================================== */
+    .gift-items-deck {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      text-align: left;
+      margin-top: 16px;
+    }
+
+    .gift-plaque {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(232, 193, 90, 0.2);
+      border-radius: 12px;
+      padding: 14px 16px;
+      position: relative;
+    }
+
+    .gift-code {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--gold-bright);
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+
+    .gift-category-title {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-creme);
+      margin-bottom: 3px;
+    }
+
+    .gift-category-body {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    .sizing-shrine-box {
+      background: linear-gradient(135deg, rgba(91, 14, 27, 0.6) 0%, rgba(20, 4, 7, 0.9) 100%);
+      border: 1px solid var(--gold-foil);
+      border-radius: 14px;
+      padding: 16px;
+      margin-top: 20px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+    }
+
+    .sizing-shrine-label {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold-bright);
+      margin-bottom: 8px;
+    }
+
+    .sizing-stats {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text-creme);
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* ==========================================================
+       VENUE & GPS DESTINATION
+    ========================================================== */
+    .venue-title-large {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--gold-bright);
+      line-height: 1.15;
+    }
+
+    .venue-sub-tag {
+      font-family: 'Cinzel', serif;
+      font-size: 12px;
+      letter-spacing: 4px;
+      color: var(--gold-foil);
+      text-transform: uppercase;
+      margin: 4px 0 8px;
+    }
+
+    .venue-location-text {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .venue-stairway-note {
+      background: rgba(0, 0, 0, 0.45);
+      border-radius: 10px;
+      border: 1px dashed var(--filigree-gold);
+      padding: 14px 16px;
+      font-size: 12.5px;
+      line-height: 1.5;
+      color: var(--text-blush);
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+
+    .gps-buttons-row {
+      display: flex;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .gps-action-btn {
+      flex: 1;
+      padding: 13px 8px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      text-align: center;
+      transition: transform 0.2s, opacity 0.2s;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.6);
+    }
+    .gps-action-btn.waze {
+      background: #33CCFF;
+      color: #002D3D;
+    }
+    .gps-action-btn.maps {
+      background: #34A853;
+      color: #FFFFFF;
+    }
+    .gps-action-btn:active {
+      transform: scale(0.95);
+    }
+
+    footer {
+      text-align: center;
+      font-size: 10.5px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(249, 241, 220, 0.4);
+      margin-top: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ember" style="width: 8px; height: 8px; left: 12%; animation-duration: 12s; animation-delay: 0s;"></div>
+  <div class="ember" style="width: 6px; height: 6px; left: 82%; animation-duration: 16s; animation-delay: 2s;"></div>
+  <div class="ember" style="width: 10px; height: 10px; left: 45%; animation-duration: 14s; animation-delay: 5s;"></div>
+  <div class="ember" style="width: 5px; height: 5px; left: 28%; animation-duration: 18s; animation-delay: 7s;"></div>
+
+  <main class="main-viewport">
+
+    <!-- =======================================================
+         STAGE 1: 3D LUXURY ENVELOPE (Tap to Open)
+    ======================================================= -->
+    <section id="envelope-screen" onclick="openInvitation()">
+      <div class="invitation-crest">Alexandra Sinsuan</div>
+
+      <div class="envelope-chassis">
+        <div class="corner-flourish corner-tl"></div>
+        <div class="corner-flourish corner-tr"></div>
+        <div class="corner-flourish corner-bl"></div>
+        <div class="corner-flourish corner-br"></div>
+
+        <div class="envelope-top-fold" id="env-flap"></div>
+        <div class="envelope-bottom-pocket"></div>
+        
+        <div class="monogram-wax-seal" id="env-seal">
+          <span class="seal-letter">A</span>
+        </div>
+      </div>
+
+      <p class="envelope-callout-quote">
+        "Because you’ve been part of her journey, the night wouldn’t be complete without you."
+      </p>
+      
+      <div class="envelope-tap-instruction">
+        Tap the envelope to reveal details ➔
+      </div>
+    </section>
+
+    <!-- =======================================================
+         STAGE 2: HAUTE COUTURE GALA FOLIO
+    ======================================================= -->
+    <section id="invitation-scroll">
+
+      <!-- SECTION 1: HERO & THE CENTERED CAKE RSVP -->
+      <article class="folio-page">
+        <p class="hero-preamble">
+          Honored guest, join us to celebrate the Eighteenth Debutante Gala of
+        </p>
+
+        <h1 class="hero-name">Alexandra Sinsuan</h1>
+        <div class="hero-sub-title">Eighteenth Birthday Debut</div>
+
+        <div class="baroque-scroll-divider">⚜ ✦ ⚜</div>
+
+        <!-- CENTERED CAKE ARCHITECTURAL ALTAR -->
+        <div class="cake-altar-container">
+          <div class="cake-niche-frame">
+            <span class="cake-shrine-label">✦ Confirm Attendance ✦</span>
+            
+            <a href="https://lexaasuan.github.io/alexandra-debut/" target="_blank" rel="noopener noreferrer" class="cake-btn-anchor">
+              <div class="cake-pedestal">
+                <!-- Illustrated Vintage Lambeth Cake SVG -->
+                <svg width="84" height="84" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Candle Flame -->
+                  <g class="flame-core">
+                    <path d="M50 7C47 15 43 19 50 25C57 19 53 15 50 7Z" fill="#F9A825"/>
+                    <circle cx="50" cy="19" r="3" fill="#FFF9C4"/>
+                  </g>
+                  <!-- Candle Stick -->
+                  <rect x="48" y="24" width="4" height="15" rx="2" fill="#E8B4BC"/>
+                  <line x1="48" y1="27" x2="52" y2="28" stroke="#D4AF37" stroke-width="1.2"/>
+                  <line x1="48" y1="32" x2="52" y2="33" stroke="#D4AF37" stroke-width="1.2"/>
+
+                  <!-- Tier 1 -->
+                  <rect x="30" y="38" width="40" height="20" rx="4" fill="#FFFDF8"/>
+                  <path d="M30 46C33 49 37 49 40 46C43 49 47 49 50 46C53 49 57 49 60 46C63 49 67 49 70 46V38H30V46Z" fill="#E8B4BC"/>
+                  <!-- Sugar Bows -->
+                  <circle cx="38" cy="46" r="2" fill="#5B0E1B"/>
+                  <circle cx="50" cy="46" r="2" fill="#5B0E1B"/>
+                  <circle cx="62" cy="46" r="2" fill="#5B0E1B"/>
+
+                  <!-- Tier 2 -->
+                  <rect x="20" y="56" width="60" height="24" rx="5" fill="#FFFDF8"/>
+                  <path d="M20 66C24 70 28 70 32 66C36 70 40 70 44 66C48 70 52 70 56 66C60 70 64 70 68 66C72 70 76 70 80 66V56H20V66Z" fill="#E8B4BC"/>
+                  <path d="M22 74C31 78 39 78 48 74" stroke="#D4AF37" stroke-width="1.2" stroke-dasharray="2 2"/>
+                  <path d="M52 74C61 78 69 78 78 74" stroke="#D4AF37" stroke-width="1.2" stroke-dasharray="2 2"/>
+
+                  <!-- Metallic Pedestal -->
+                  <path d="M14 83C14 80 18 79 22 79H78C82 79 86 80 86 83C86 86 78 89 50 89C22 89 14 86 14 83Z" fill="url(#goldGrade)"/>
+                  <defs>
+                    <linearGradient id="goldGrade" x1="14" y1="79" x2="86" y2="89" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#FFE89E"/>
+                      <stop offset="0.5" stop-color="#D4AF37"/>
+                      <stop offset="1" stop-color="#8A6818"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+
+              <div class="cake-tap-button">
+                Tap Cake to RSVP ➔
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- SCHEDULE RIBBON -->
+        <div class="schedule-badge-row">
+          <div class="schedule-capsule">
+            <span class="schedule-tag">Date of Gala</span>
+            <span class="schedule-val">Nov 8, 2026</span>
+          </div>
+          <div class="schedule-capsule">
+            <span class="schedule-tag">Doors Open</span>
+            <span class="schedule-val">5:00 PM</span>
+          </div>
+        </div>
+
+        <!-- STRICT ENTRANCE WARNING -->
+        <div class="strict-alert-box">
+          <strong>A Kind but Strict Reminder:</strong> Doors open at 5:00 PM. The grand entrance starts promptly at <strong>6:00 PM</strong>, and we strictly require all guests to arrive on time to ensure an uninterrupted program.
+        </div>
+      </article>
+
+      <!-- SECTION 2: ATTIRE & THE 6-COLOR PALETTE -->
+      <article class="folio-page">
+        <div class="ornate-header">
+          <span class="sur-title">The Dress Code</span>
+          <h2 class="grand-title">Attire: Black Tie</h2>
+          <div class="baroque-scroll-divider">✦</div>
+        </div>
+
+        <p style="font-size: 13px; color: var(--text-blush); margin-bottom: 18px;">
+          We invite our guests to dress in their formal best to complement our evening palette.
+        </p>
+
+        <!-- PALETTE SWATCHES -->
+        <div class="palette-shrine">
+          <span class="palette-shrine-label">Evening Color Palette</span>
+          <div class="swatches-flex-grid">
+            <div class="swatch-unit">
+              <div class="swatch-orb wine-red"></div>
+              <span class="swatch-text">Wine Red</span>
+            </div>
+            <div class="swatch-unit">
+              <div class="swatch-orb dusty-pink"></div>
+              <span class="swatch-text">Dusty Pink</span>
+            </div>
+            <div class="swatch-unit">
+              <div class="swatch-orb champagne-white"></div>
+              <span class="swatch-text">Champagne</span>
+            </div>
+            <div class="swatch-unit">
+              <div class="swatch-orb forest-green"></div>
+              <span class="swatch-text">Forest Green</span>
+            </div>
+            <div class="swatch-unit">
+              <div class="swatch-orb rustic-brown"></div>
+              <span class="swatch-text">Rustic Brown</span>
+            </div>
+            <div class="swatch-unit">
+              <div class="swatch-orb black"></div>
+              <span class="swatch-text">Black</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="attire-columns">
+          <div class="attire-card-arch">
+            <div class="attire-role-tag">Ladies</div>
+            <p class="attire-description">Floor-length gowns, elegant midi dresses, or tailored evening suits.</p>
+          </div>
+
+          <div class="attire-card-arch">
+            <div class="attire-role-tag">Gentlemen</div>
+            <p class="attire-description">Suits with tie, blazers with formal trousers, or a formal Barong Tagalog.</p>
+          </div>
+        </div>
+
+        <p class="discouraged-text">
+          Please note: To keep the evening elevated, denim, t-shirts, sneakers, and casual wear are kindly discouraged.
+        </p>
+      </article>
+
+      <!-- SECTION 3: ORDER OF THE EVENING -->
+      <article class="folio-page">
+        <div class="ornate-header">
+          <span class="sur-title">Program Sequence</span>
+          <h2 class="grand-title">Order of the Evening</h2>
+          <div class="baroque-scroll-divider">✦</div>
+        </div>
+
+        <div class="chronicle-stream">
+          <div class="chronicle-item">
+            <div class="chronicle-numeral">I</div>
+            <div class="chronicle-content">
+              <div class="chronicle-title">The Welcome</div>
+              <div class="chronicle-desc">Welcome Remarks & Family Entry • Grand Entrance of the Debutante</div>
+            </div>
+          </div>
+
+          <div class="chronicle-item">
+            <div class="chronicle-numeral">II</div>
+            <div class="chronicle-content">
+              <div class="chronicle-title">The Traditions</div>
+              <div class="chronicle-desc">Eighteen Roses • Nine Candles • Nine Toasts • Eighteen Treasures</div>
+            </div>
+          </div>
+
+          <div class="chronicle-item">
+            <div class="chronicle-numeral">III</div>
+            <div class="chronicle-content">
+              <div class="chronicle-title">The Feast</div>
+              <div class="chronicle-desc">Dinner Service</div>
+            </div>
+          </div>
+
+          <div class="chronicle-item">
+            <div class="chronicle-numeral">IV</div>
+            <div class="chronicle-content">
+              <div class="chronicle-title">The Celebration</div>
+              <div class="chronicle-desc">Second Grand Entrance • Cake Cutting • Games</div>
+            </div>
+          </div>
+
+          <div class="chronicle-item">
+            <div class="chronicle-numeral">V</div>
+            <div class="chronicle-content">
+              <div class="chronicle-title">The Finale</div>
+              <div class="chronicle-desc">Closing Message from the Debutante • After Party & Dancing Till Late</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- SECTION 4: GIFT GUIDE & PERSONAL SIZING -->
+      <article class="folio-page">
+        <div class="ornate-header">
+          <span class="sur-title">Thoughtful Tokens</span>
+          <h2 class="grand-title">Gift Registry</h2>
+          <div class="baroque-scroll-divider">✦</div>
+        </div>
+
+        <p style="font-size: 13px; color: var(--text-blush); line-height: 1.5; margin-bottom: 16px;">
+          Having you celebrate this milestone is the greatest gift of all. The debutante is a sentimentalist at heart who treasures thoughtfulness over extravagance. Cash towards her next chapter is warmly encouraged, but thoughtful tokens are equally cherished.
+        </p>
+
+        <div class="gift-items-deck">
+          <div class="gift-plaque">
+            <div class="gift-code">01 · THE SENTIMENTAL</div>
+            <div class="gift-category-title">Handwritten Tokens</div>
+            <div class="gift-category-body">Handwritten letters, heartfelt cards, and handmade gifts.</div>
+          </div>
+
+          <div class="gift-plaque">
+            <div class="gift-code">02 · ATTIRE & ACCESSORIES</div>
+            <div class="gift-category-title">Wardrobe & Jewels</div>
+            <div class="gift-category-body">Dainty jewelry, classic dresses, skirts, tops, handbags, and chic footwear.</div>
+          </div>
+
+          <div class="gift-plaque">
+            <div class="gift-code">03 · BEAUTY & CARE</div>
+            <div class="gift-category-title">Fragrance & Glamour</div>
+            <div class="gift-category-body">Signature fragrances, hair styling tools (hair curler), and makeup (kindly exclude foundation).</div>
+          </div>
+
+          <div class="gift-plaque">
+            <div class="gift-code">04 · HOBBIES & FINDS</div>
+            <div class="gift-category-title">Books & Keepsakes</div>
+            <div class="gift-category-body">Romance and fantasy literature, manga, board games, water flasks, cameras, and Miniso finds.</div>
+          </div>
+        </div>
+
+        <div class="sizing-shrine-box">
+          <div class="sizing-shrine-label">Personal Sizing Guide</div>
+          <div class="sizing-stats">
+            <span>Top/Dress: <strong>Small</strong></span>
+            <span>•</span>
+            <span>Waist: <strong>27"</strong></span>
+            <span>•</span>
+            <span>Footwear: <strong>35–36 EU</strong></span>
+          </div>
+        </div>
+      </article>
+
+      <!-- SECTION 5: VENUE & NAVIGATION -->
+      <article class="folio-page">
+        <div class="ornate-header">
+          <span class="sur-title">The Destination</span>
+          <h2 class="grand-title">Celebration Venue</h2>
+          <div class="baroque-scroll-divider">✦</div>
+        </div>
+
+        <h3 class="venue-title-large">Placida Pavillion & Villa</h3>
+        <div class="venue-sub-tag">The Hall</div>
+        <p class="venue-location-text">Lugam Road, Malolos, Bulacan</p>
+
+        <div class="venue-stairway-note">
+          "Upon arrival, please take the stairway leading to the second floor where we await."
+        </div>
+
+        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 14px;">
+          For seamless navigation, open your preferred GPS application below:
+        </p>
+
+        <div class="gps-buttons-row">
+          <a href="https://waze.com/ul?q=Placida%20Pavillion%20and%20Villa%20Lugam%20Malolos" target="_blank" rel="noopener noreferrer" class="gps-action-btn waze">Open in Waze</a>
+          <a href="https://maps.google.com/?q=Placida+Pavillion+and+Villa+Lugam+Road+Malolos" target="_blank" rel="noopener noreferrer" class="gps-action-btn maps">Google Maps</a>
+        </div>
+      </article>
+
+      <footer>
+        Alexandra Sinsuan's 18th Debutante Gala<br>
+        Placida Pavillion & Villa • Malolos, Bulacan
+      </footer>
+
+    </section>
+
+  </main>
+
+  <script>
+    function openInvitation() {
+      const envelopeScreen = document.getElementById('envelope-screen');
+      const flap = document.getElementById('env-flap');
+      const seal = document.getElementById('env-seal');
+      const invitationScroll = document.getElementById('invitation-scroll');
+
+      // 1. Break wax seal & flip flap
+      seal.style.transform = 'translateY(-60%) scale(0.6)';
+      seal.style.opacity = '0';
+      flap.style.transform = 'rotateX(180deg)';
+
+      // 2. Fade envelope away
+      setTimeout(() => {
+        envelopeScreen.style.opacity = '0';
+        envelopeScreen.style.transform = 'translateY(-30px)';
+      }, 350);
+
+      // 3. Unfold grand invitation folio
+      setTimeout(() => {
+        envelopeScreen.style.display = 'none';
+        invitationScroll.style.display = 'flex';
+        
+        requestAnimationFrame(() => {
+          invitationScroll.style.opacity = '1';
+          invitationScroll.style.transform = 'translateY(0)';
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }, 700);
+    }
+  </script>
+
+</body>
+</html>
