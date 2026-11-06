@@ -439,7 +439,7 @@
           <input 
             type="password" 
             id="passcodeInput" 
-            placeholder="Enter PIN (1108)" 
+            placeholder="Enter" 
             class="w-full text-center tracking-widest text-lg py-2.5 px-4 rounded-xl bg-wine-950 border border-champagne-gold/40 text-champagne-100 focus:outline-none focus:border-champagne-gold"
             maxlength="10"
             required
@@ -1050,7 +1050,7 @@
       e.preventDefault();
       const input = document.getElementById('passcodeInput').value.trim();
 
-      if (input === '1108' || input.toLowerCase() === 'alexandra18') {
+      if (input === '119211' || input.toLowerCase() === 'alexandra18') {
         sessionStorage.setItem('alexandra_organizer_unlocked', 'true');
         closePasscodeModal();
         openTrackerDashboard();
